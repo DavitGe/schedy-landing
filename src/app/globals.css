@@ -3,6 +3,17 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Morphism and Bento grid variables */
+  --card-bg: 255, 255, 255;
+  --card-shadow-light: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --card-shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --card-border: rgba(0, 0, 0, 0.05);
+  --morphism-bg: rgba(255, 255, 255, 0.7);
+  --morphism-border: rgba(255, 255, 255, 0.1);
+  --morphism-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --gradient-start: #6366f1; /* indigo-600 */
+  --gradient-end: #8b5cf6; /* violet-500 */
 }
 
 @theme inline {
@@ -16,6 +27,15 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+
+    /* Dark mode morphism and Bento grid variables */
+    --card-bg: 25, 25, 25;
+    --card-shadow-light: 0 4px 20px rgba(0, 0, 0, 0.2);
+    --card-shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --card-border: rgba(255, 255, 255, 0.05);
+    --morphism-bg: rgba(30, 30, 30, 0.6);
+    --morphism-border: rgba(255, 255, 255, 0.03);
+    --morphism-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -23,4 +43,40 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Bento Card Styles */
+.bento-card {
+  background-color: rgba(var(--card-bg), 0.8);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow-light);
+  transition: all 0.3s ease;
+}
+
+.bento-card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-4px);
+}
+
+/* Morphism Styles */
+.morphism {
+  background: var(--morphism-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--morphism-border);
+  box-shadow: var(--morphism-shadow);
+  border-radius: 1rem;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(
+    to right,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
