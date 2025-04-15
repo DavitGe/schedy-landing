@@ -166,7 +166,7 @@ function Footer() {
           &copy; {currentYear} Schedy, Inc. All rights reserved.
         </p>
         <div className="flex gap-6">
-          {legalLinks.map((link, index) => (
+          {legalLinks.map((link) => (
             <motion.a
               key={link.name}
               whileHover={{ y: -2 }}

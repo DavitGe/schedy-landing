@@ -2,11 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import {
-  staggerContainer,
-  popIn,
-  fadeInScaleUp,
-} from "../animations/MotionVariants";
+import { staggerContainer, fadeInScaleUp } from "../animations/MotionVariants";
 import SectionTitle from "../ui/SectionTitle";
 import Button from "../ui/Button";
 
