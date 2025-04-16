@@ -12,7 +12,7 @@ interface PageContainerProps {
 function PageContainer({ children, className = "" }: PageContainerProps) {
   return (
     <div
-      className={`min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 p-6 md:p-12 ${className}`}
+      className={`min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 p-6 md:p-12 pt-24 md:pt-32 ${className}`}
     >
       <Header />
       <main>{children}</main>

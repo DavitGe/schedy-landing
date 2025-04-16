@@ -89,6 +89,15 @@ function TestimonialsSection() {
       "bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400",
   };
 
+  // Define lighting color map to match testimonial colors
+  const lightingColorMap = {
+    indigo: "before:bg-indigo-400/30 dark:before:bg-indigo-500/20",
+    blue: "before:bg-blue-400/30 dark:before:bg-blue-500/20",
+    violet: "before:bg-violet-400/30 dark:before:bg-violet-500/20",
+    emerald: "before:bg-emerald-400/30 dark:before:bg-emerald-500/20",
+    amber: "before:bg-amber-400/30 dark:before:bg-amber-500/20",
+  };
+
   return (
     <section id="testimonials" className="max-w-7xl mx-auto mb-24">
       <SectionTitle
@@ -109,11 +118,31 @@ function TestimonialsSection() {
             variants={index % 2 === 0 ? slideInLeft : slideInRight}
             custom={index}
             whileHover={{
-              y: -5,
               boxShadow:
                 "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+              // Add lighting effect on hover
+              "--glow-x": "calc(var(--x) * 1px - 50%)",
+              "--glow-y": "calc(var(--y) * 1px - 50%)",
+              "--glow-opacity": "1",
+              "--glow-scale": "1.75",
             }}
-            className={`${testimonial.colSpan} bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 group`}
+            // Add before pseudo element for blurred lighting and track mouse position
+            className={`${
+              testimonial.colSpan
+            } bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 group relative overflow-hidden
+              before:absolute before:w-40 before:h-40 before:rounded-full before:opacity-0 before:blur-2xl before:pointer-events-none before:transition-all before:duration-500
+              before:scale-0 before:left-[var(--glow-x)] before:top-[var(--glow-y)] before:translate-x-[-50%] before:translate-y-[-50%]
+              before:opacity-[var(--glow-opacity,0)] before:scale-[var(--glow-scale,0)]
+              ${lightingColorMap[testimonial.color]}
+            `}
+            onMouseMove={(e) => {
+              // Get the relative position of the mouse within the element
+              const rect = e.currentTarget.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              e.currentTarget.style.setProperty("--x", String(x));
+              e.currentTarget.style.setProperty("--y", String(y));
+            }}
           >
             <div className="flex items-center mb-4">
               <div
